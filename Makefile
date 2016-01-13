@@ -3,95 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acazuc <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2015/12/28 11:31:16 by acazuc           ###   ########.fr        #
+#    Updated: 2016/01/13 19:59:41 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = rtv1
+NAME = ft_printf
 
-CFLAGS = -Wall -Wextra -Werror -Ofast
-
-CC = gcc
+FLAGS = -Wall -Wextra -Werror -Ofast
 
 INCLUDES_PATH = includes/
 
-INCLUDES_NAME = console.h \
-		  		env.h \
-				prototypes.h \
-				rtv1.h \
-				window.h \
-				includes.h \
-				object.h \
-				object_list.h \
-		 		object_type.h \
-		 		vector.h \
-		 		functions.h \
-		 		ray.h \
-		 		light.h \
-		 		point.h \
-		 		trinome.h \
-		 		light_list.h \
-		 		colors.h \
-		 		color_mask.h \
-		 		collision.h
-
-INCLUDES = $(addprefix $(INCLUDES_PATH), $(INCLUDES_NAME))
-
 SRCS_PATH = srcs/
 
-SRCS_NAME = main.c \
-	  		pixel_put.c \
-	  		error_quit.c \
-	 		draw_reset.c \
-	 		draw.c \
-	  		trace.c \
-	  		env_init.c \
-	   		window_init.c \
-	  		expose_listener.c \
-	 		display.c \
-	  		object_create.c \
-	  		object_add.c \
-	  		vector_create.c \
-	  		distance_3d.c \
-	  		key_listener.c \
-	  		point_create.c \
-	 		create_sphere.c \
-	  		create_cylinder.c \
-	   		create_cone.c \
-	  		collide.c \
-	  		collide_sphere.c \
-	  		collide_cylinder.c \
-	  		collide_cone.c \
-	  		ray_create.c \
-	  		vector_rotate.c \
-	  		vector_rotation.c \
-	 		light_create.c \
-	 		light_add.c \
-	 		vector_size.c \
-	  		color_create.c \
-	  		vector_normalize.c \
-	 		color_getters.c \
-	 		light_level.c \
-	  		ray_free.c \
-	  		collision_create.c \
-	  		color_factor.c \
-	  		vector_equals.c \
-	  		vector_multiply.c \
-	   		vector_angle.c \
-	  		normal.c \
-	  		normal_sphere.c \
-	  		normal_cylinder.c \
-	  		color_mask_create.c \
-	   		color_mask.c \
-	  		trinome_create.c \
-	  		get_ray_color.c \
-	   		get_reflection_ray.c \
-	   		color_add.c \
-	   		worker.c \
-	  		get_transparency_ray.c
+SRCS_NAME = main.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
@@ -101,14 +28,14 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 
-LIBRARY = -lmlx -L libft/ -lft -framework OpenGL -framework AppKit
+LIBRARY = -L libft/ -lft
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@Make -C libft
+	@make -C libft/
 	@echo " - Making $(NAME)"
-	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY) -I$(INCLUDES_PATH)
+	@gcc $(FLAGS) -o $(NAME) $^ $(LIBRARY)
 	@echo "\033[1;32m"
 	@echo "                                      AKEFILEMA                         (c) Tchang     "
 	@echo "                                  KEFILEMAKEFILEMAK                                    "
@@ -165,21 +92,18 @@ $(NAME): $(OBJS)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@echo " - Compiling $<"
-	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES_PATH)
+	@gcc $(FLAGS) -o $@ -c $< -I$(INCLUDES_PATH)
 
-.PHONY: clean fclean re norme
-
-norme:
-	@norminette $(SRCS) $(HEADERS)
+.PHONY: clean fclean re
 
 clean:
-	@Make clean -C libft
-	@echo " - Clearing objects files"
+	@make -C libft/ clean
+	@echo " - Cleaning objs"
 	@rm -f $(OBJS)
 
 fclean: clean
-	@Make fclean -C libft
-	@echo " - Clearing executable file"
+	@make -C libft/ fclean
+	@echo " - Cleaning executable"
 	@rm -f $(NAME)
 
 re: fclean all
