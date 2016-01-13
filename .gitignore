@@ -1,4 +1,4 @@
 *.o
 libft/*
 *.swp
-rtv1
+ft_printf
