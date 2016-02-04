@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 14:38:18 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 14:39:53 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 16:53:55 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 typedef struct		s_flags
 {
 	char			minus;
+	char			space;
 	char			zero;
 	char			plus;
 	char			sharp;

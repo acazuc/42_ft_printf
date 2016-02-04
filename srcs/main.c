@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/02 11:49:00 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 16:34:52 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_printf(char *str, ...)
 {
-	va_list	arguments;
-	int		i;
+	t_argument	*argument;
+	va_list		arguments;
+	size_t		i;
 
 	va_start(arguments, str);
 	i = 0;
@@ -23,6 +24,11 @@ void	ft_printf(char *str, ...)
 	{
 		if (str[i] == '%')
 		{
+			i++;
+			if (!(argument = parse_arg(str, &i)))
+				return (NULL);
+			print_argument(argument);
+			free_argument(argument);
 			if (str[i + 1] == 's')
 			{
 				ft_putstr(va_arg(arguments, char*));

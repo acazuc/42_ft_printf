@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 14:42:35 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 16:28:36 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 16:56:09 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,18 @@
 static void	parse_flags(t_flags *flags, char *str, size_t *i)
 {
 	if (str[*i] == '-')
-	{
 		flags->minus = 1;
-		(*i)++;
-		parse_flags(flags, str, i);
-	}
 	else if (str[*i] == '+')
-	{
 		flags->plus = 1;
-		(*i)++;
-		parse_flags(flags, str, i);
-	}
 	else if (str[*i] == '0')
-	{
 		flags->zero = 1;
-		(*i)++;
-		parse_flags(flags, str, i);
-	}
 	else if (str[*i] == '#')
-	{
 		flags->sharp = 1;
+	else if (str[*i] == ' ')
+		flags->space = 1;
+	if (str[*i] == '-' || str[*i] == '+' || str[*i] == '0' || str[*i] == '#'
+			|| str[*i] == ' ')
+	{
 		(*i)++;
 		parse_flags(flags, str, i);
 	}
