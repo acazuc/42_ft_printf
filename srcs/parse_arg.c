@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 14:42:35 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 17:03:06 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 18:47:15 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,6 @@ static void	parse_flags(t_flags *flags, char *str, size_t *i)
 		(*i)++;
 		parse_flags(flags, str, i);
 	}
-}
-
-static int	parse_width(t_argument *argument, char *str, size_t *i)
-{
-	size_t	start;
-	size_t	end;
-	char	*result;
-
-	start = *i;
-	while (str[*i] >= '0' && str[*i] <= '9')
-		(*i)++;
-	end = *i;
-	if (end == start)
-		return (1);
-	if (!(result = ft_strsub(str, start, end - start)))
-		return (0);
-	argument->width = ft_atoi(result);
-	return (1);
 }
 
 static int	parse_preci(t_argument *argument, char *str, size_t *i)

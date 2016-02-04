@@ -6,9 +6,11 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 18:34:01 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 18:41:44 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 18:52:06 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 static void		parse_h(t_argument *argument, char *str, size_t *i)
 {
@@ -34,7 +36,7 @@ static void		parse_l(t_argument *argument, char *str, size_t *i)
 	(*i)++;
 }
 
-static void		parse_size(t_argument *argument, char *str, size_t *i)
+static int		parse_size(t_argument *argument, char *str, size_t *i)
 {
 	size_t	start;
 	size_t	end;
@@ -49,29 +51,26 @@ static void		parse_size(t_argument *argument, char *str, size_t *i)
 	if (!(result = ft_strsub(str, start, end - start)))
 		return (0);
 	argument->width = ft_atoi(result);
+	return (1);
 }
 
-int	parse_width(t_argument *argument, char *str, size_t *i)
+int				parse_width(t_argument *argument, char *str, size_t *i)
 {
-	size_t	start;
-	size_t	end;
-	char	*result;
-
+	if (!parse_size(argument, str, i))
+		return (0);
 	if (str[*i] == 'h')
 		parse_h(argument, str, i);
-	else if (str[*i] == 'l')
+	if (str[*i] == 'l')
 		parse_l(argument, str, i);
-	else if (str[*i] == 'j')
+	if (str[*i] == 'j')
 	{
 		argument->j = 1;
 		(*i)++;
 	}
-	else if (str[*i] == 'z')
+	if (str[*i] == 'z')
 	{
 		argument->z = 1;
 		(*i)++;
 	}
-	else
-		parse_size(argument, str, i);
 	return (1);
 }
