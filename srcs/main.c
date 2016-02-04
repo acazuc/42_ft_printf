@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/02 11:46:46 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/02 11:49:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_printf(char *str, ...)
 
 int		main(void)
 {
-	ft_printf("-%s-%d-%c-%d-%s\n", "mdr", 5, 'Q', 6, "lol");
-	   printf("-%s-%d-%c-%d-%s\n", "mdr", 5, 'Q', 6, "lol");
+	ft_printf("-%s-%d-%c-%d-%s-\n", "mdr", 5, 'Q', 6, "lol");
+	   printf("-%s-%d-%c-%d-%s-\n", "mdr", 5, 'Q', 6, "lol");
 	return (0);
 }

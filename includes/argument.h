@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   argument.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 19:46:09 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 14:38:00 by acazuc           ###   ########.fr       */
+/*   Created: 2016/02/04 14:35:12 by acazuc            #+#    #+#             */
+/*   Updated: 2016/02/04 15:21:10 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef ARGUMENT_H
+# define ARGUMENT_H
 
-# include "includes.h"
-# include "prototypes.h"
-# include "argument.h"
 # include "flags.h"
-# include "../libft/includes/libft.h"
+
+typedef struct	s_argument
+{
+	t_flags		*flags;
+	int			width;
+	int			preci;
+	char		type;
+}				t_argument;
 
 #endif

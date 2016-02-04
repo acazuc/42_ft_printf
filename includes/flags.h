@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   flags.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 19:46:09 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 14:38:00 by acazuc           ###   ########.fr       */
+/*   Created: 2016/02/04 14:38:18 by acazuc            #+#    #+#             */
+/*   Updated: 2016/02/04 14:39:53 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FLAGS_H
+# define FLAGS_H
 
-# include "includes.h"
-# include "prototypes.h"
-# include "argument.h"
-# include "flags.h"
-# include "../libft/includes/libft.h"
+typedef struct		s_flags
+{
+	char			minus;
+	char			zero;
+	char			plus;
+	char			sharp;
+}					t_flags;
 
 #endif

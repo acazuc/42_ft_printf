@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   flags_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 19:46:09 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 14:38:00 by acazuc           ###   ########.fr       */
+/*   Created: 2016/02/04 15:21:49 by acazuc            #+#    #+#             */
+/*   Updated: 2016/02/04 15:24:03 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include "includes.h"
-# include "prototypes.h"
-# include "argument.h"
-# include "flags.h"
-# include "../libft/includes/libft.h"
+t_flags		*flags_create(void)
+{
+	t_flags		*flags;
 
-#endif
+	if (!(flags = malloc(sizeof(*flags))))
+		return (NULL);
+	flags->minus = 0;
+	flags->zero = 0;
+	flags->plus = 0;
+	flags->sharp = 0;
+	return (flags);
+}
