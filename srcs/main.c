@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 17:02:28 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 17:56:06 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_printf(char *str, ...)
 				return ;
 			print_argument(argument);
 			argument_free(argument);
-			if (str[i + 1] == 's')
+			/*if (str[i + 1] == 's')
 			{
 				ft_putstr(va_arg(list, char*));
 				i++;
@@ -43,7 +43,7 @@ void	ft_printf(char *str, ...)
 			{
 				ft_putchar((char)va_arg(list, int));
 				i++;
-			}
+			}*/
 		}
 		else
 			ft_putchar(str[i]);
