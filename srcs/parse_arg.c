@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 14:42:35 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 16:11:13 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 16:28:36 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,65 @@ static void	parse_flags(t_flags *flags, char *str, size_t *i)
 	if (str[*i] == '-')
 	{
 		flags->minus = 1;
-		parse_flags(flags, str, ++(*i));
+		(*i)++;
+		parse_flags(flags, str, i);
 	}
 	else if (str[*i] == '+')
 	{
 		flags->plus = 1;
-		parse_flags(flags, str, ++(*i));
+		(*i)++;
+		parse_flags(flags, str, i);
 	}
 	else if (str[*i] == '0')
 	{
 		flags->zero = 1;
-		parse_flags(flags, str, ++(*i));
+		(*i)++;
+		parse_flags(flags, str, i);
 	}
 	else if (str[*i] == '#')
 	{
 		flags->sharp = 1;
-		parse_flags(flags, st,r ++(*i));
+		(*i)++;
+		parse_flags(flags, str, i);
 	}
+}
+
+static int	parse_width(t_argument *argument, char *str, size_t *i)
+{
+	size_t	start;
+	size_t	end;
+	char	*result;
+
+	start = *i;
+	while (str[*i] >= '0' && str[*i] <= '9')
+		(*i)++;
+	end = *i;
+	if (end == start)
+		return (1);
+	if (!(result = ft_strsub(str, start, end - start)))
+		return (0);
+	argument->width = ft_atoi(result);
+	return (1);
+}
+
+static int	parse_preci(t_argument *argument, char *str, size_t *i)
+{
+	size_t	start;
+	size_t	end;
+	char	*result;
+
+	if (str[*i] != '.')
+		return (1);
+	start = *i;
+	while (str[*i] >= '0' && str[*i] <= '9')
+		(*i)++;
+	end = *i;
+	if (end == start)
+		return (1);
+	if (!(result = ft_strsub(str, start, end - start)))
+		return (0);
+	argument->preci = ft_atoi(result);
+	return (1);
 }
 
 t_argument	*parse_argument(char *str, size_t *i)
@@ -43,6 +85,16 @@ t_argument	*parse_argument(char *str, size_t *i)
 	if (!(argument = argument_create()))
 		return (NULL);
 	parse_flags(argument->flags, str, i);
-	parse_width(argument, str, i);
-	parse_preci(argument, strm i);
+	if (!parse_width(argument, str, i))
+	{
+		argument_free(argument);
+		return (NULL);
+	}
+	if (!parse_preci(argument, str, i))
+	{
+		argument_free(argument);
+		return (NULL);
+	}
+	argument->type = str[i];
+	return (argument);
 }

@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argument_create.c                                  :+:      :+:    :+:   */
+/*   argument_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/04 14:44:48 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 16:27:24 by acazuc           ###   ########.fr       */
+/*   Created: 2016/02/04 16:21:08 by acazuc            #+#    #+#             */
+/*   Updated: 2016/02/04 16:21:38 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_argument	*argument_create(void)
+void	argument_free(t_argument *argument)
 {
-	t_argument	*argument;
-	t_flags		*flags;
-
-	if (!(flags = flags_create()))
-		return (NULL);
-	if (!(argument = malloc(sizeof(*argument))))
-	{
-		free(flags);
-		return (NULL);
-	}
-	argument->flags = flags;
-	argument->width = -1;
-	argument->preci = -1;
-	argument->type = '\0';
-	return (argument);
+	free(argument->flags);
+	free(argument);
 }
