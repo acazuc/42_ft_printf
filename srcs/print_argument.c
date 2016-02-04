@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 16:35:07 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 16:48:49 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 16:56:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void		print_argument_2(t_argument *argument)
 		print_argument_c(argument);
 	else if (argument->type == 'C')
 		print_argument_c_caps(argument);
+	else if (argument->type == '%')
+		print_argument_percent(argument);
 }
 
 void			print_argument(t_argument *argument)

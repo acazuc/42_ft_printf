@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 14:42:35 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 16:56:09 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 17:03:06 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ static int	parse_preci(t_argument *argument, char *str, size_t *i)
 	return (1);
 }
 
-t_argument	*parse_argument(char *str, size_t *i)
+t_argument	*parse_arg(char *str, size_t *i, va_list *lst)
 {
 	t_argument	*argument;
 
-	if (!(argument = argument_create()))
+	if (!(argument = argument_create(lst)))
 		return (NULL);
 	parse_flags(argument->flags, str, i);
 	if (!parse_width(argument, str, i))
@@ -87,6 +87,6 @@ t_argument	*parse_argument(char *str, size_t *i)
 		argument_free(argument);
 		return (NULL);
 	}
-	argument->type = str[i];
+	argument->type = str[*i];
 	return (argument);
 }

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:47:40 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 16:23:30 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 17:09:18 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,26 @@
 # include "argument.h"
 # include "flags.h"
 
-void	ft_printf(char *str, ...);
-t_argument	*parse_argument(char *str, size_t *i);
-t_argument	*argument_create(void);
+void		ft_printf(char *str, ...);
+t_argument	*parse_arg(char *str, size_t *i, va_list *lst);
+t_argument	*argument_create(va_list *lst);
 void		argument_free(t_argument *argument);
 t_flags		*flags_create(void);
+void		print_argument(t_argument *argument);
+void		print_argument_s(t_argument *argument);
+void		print_argument_s_caps(t_argument *argument);
+void		print_argument_p(t_argument *argument);
+void		print_argument_d(t_argument *argument);
+void		print_argument_d_caps(t_argument *argument);
+void		print_argument_i(t_argument *argument);
+void		print_argument_o(t_argument *argument);
+void		print_argument_o_caps(t_argument *argument);
+void		print_argument_u(t_argument *argument);
+void		print_argument_u_caps(t_argument *argument);
+void		print_argument_x(t_argument *argument);
+void		print_argument_x_caps(t_argument *argument);
+void		print_argument_c(t_argument *argument);
+void		print_argument_c_caps(t_argument *argument);
+void		print_argument_percent(t_argument *argument);
 
 #endif

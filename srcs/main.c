@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 16:34:52 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/04 17:02:28 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,33 @@
 void	ft_printf(char *str, ...)
 {
 	t_argument	*argument;
-	va_list		arguments;
+	va_list		list;
 	size_t		i;
 
-	va_start(arguments, str);
+	va_start(list, str);
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
 			i++;
-			if (!(argument = parse_arg(str, &i)))
-				return (NULL);
+			if (!(argument = parse_arg(str, &i, &list)))
+				return ;
 			print_argument(argument);
-			free_argument(argument);
+			argument_free(argument);
 			if (str[i + 1] == 's')
 			{
-				ft_putstr(va_arg(arguments, char*));
+				ft_putstr(va_arg(list, char*));
 				i++;
 			}
 			else if (str[i + 1] == 'd')
 			{
-				ft_putnbr(va_arg(arguments, int));
+				ft_putnbr(va_arg(list, int));
 				i++;
 			}
 			else if (str[i + 1] == 'c')
 			{
-				ft_putchar((char)va_arg(arguments, int));
+				ft_putchar((char)va_arg(list, int));
 				i++;
 			}
 		}
@@ -49,7 +49,7 @@ void	ft_printf(char *str, ...)
 			ft_putchar(str[i]);
 		i++;
 	}
-	va_end(arguments);
+	va_end(list);
 }
 
 int		main(void)
