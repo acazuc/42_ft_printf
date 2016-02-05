@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 14:42:35 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 18:47:15 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/05 08:45:47 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static int	parse_preci(t_argument *argument, char *str, size_t *i)
 
 	if (str[*i] != '.')
 		return (1);
+	(*i)++;
 	start = *i;
 	while (str[*i] >= '0' && str[*i] <= '9')
 		(*i)++;
@@ -69,6 +70,7 @@ t_argument	*parse_arg(char *str, size_t *i, va_list *lst)
 		argument_free(argument);
 		return (NULL);
 	}
+	parse_length(argument, str, i);
 	argument->type = str[*i];
 	return (argument);
 }
