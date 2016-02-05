@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_zeros.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 09:35:10 by acazuc           ###   ########.fr       */
+/*   Created: 2016/02/05 09:27:10 by acazuc            #+#    #+#             */
+/*   Updated: 2016/02/05 09:27:41 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf(char *str, ...)
+void	print_zeros(size_t i)
 {
-	t_argument	*argument;
-	va_list		list;
-	size_t		i;
+	size_t	count;
 
-	va_start(list, str);
-	i = 0;
-	while (str[i])
+	count = 0;
+	while (count < i)
 	{
-		if (str[i] == '%')
-		{
-			i++;
-			if (!(argument = parse_arg(str, &i, &list)))
-				return ;
-			print_argument(argument);
-			argument_free(argument);
-		}
-		else
-			ft_putchar(str[i]);
-		i++;
+		ft_putchar('0');
+		count++;
 	}
-	va_end(list);
-}
-
-int		main(void)
-{
-	ft_printf("-%-8.10d-\n", 20);
-	   printf("-%-8.10d-\n", 20);
-	return (0);
 }

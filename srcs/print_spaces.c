@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_spaces.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 09:35:10 by acazuc           ###   ########.fr       */
+/*   Created: 2016/02/05 08:53:31 by acazuc            #+#    #+#             */
+/*   Updated: 2016/02/05 08:56:23 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf(char *str, ...)
+void	print_spaces(size_t len)
 {
-	t_argument	*argument;
-	va_list		list;
-	size_t		i;
+	size_t	count;
 
-	va_start(list, str);
-	i = 0;
-	while (str[i])
+	count = 0;
+	while (count < len)
 	{
-		if (str[i] == '%')
-		{
-			i++;
-			if (!(argument = parse_arg(str, &i, &list)))
-				return ;
-			print_argument(argument);
-			argument_free(argument);
-		}
-		else
-			ft_putchar(str[i]);
-		i++;
+		ft_putchar(' ');
+		count++;
 	}
-	va_end(list);
-}
-
-int		main(void)
-{
-	ft_printf("-%-8.10d-\n", 20);
-	   printf("-%-8.10d-\n", 20);
-	return (0);
 }
