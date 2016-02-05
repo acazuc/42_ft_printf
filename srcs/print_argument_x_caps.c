@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:30:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/04 17:30:59 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/05 11:17:07 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	print_argument_x_caps(t_argument *argument)
 {
-	(void)argument;
+	print_argument_x(argument);
 }
