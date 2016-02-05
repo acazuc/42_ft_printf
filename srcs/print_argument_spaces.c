@@ -1,44 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_argument_spaces.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 13:13:03 by acazuc           ###   ########.fr       */
+/*   Created: 2016/02/05 13:03:59 by acazuc            #+#    #+#             */
+/*   Updated: 2016/02/05 13:10:18 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf(char *str, ...)
+void	print_argument_spaces(t_argument *arg, size_t len)
 {
-	t_argument	*argument;
-	va_list		list;
-	size_t		i;
+	size_t	preci;
+	size_t	width;
 
-	va_start(list, str);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			i++;
-			if (!(argument = parse_arg(str, &i, &list)))
-				return ;
-			print_argument(argument);
-			argument_free(argument);
-		}
-		else
-			ft_putchar(str[i]);
-		i++;
-	}
-	va_end(list);
-}
-
-int	main(void)
-{
-	ft_printf("%10u\n", 50);
-	   printf("%10u\n", 50);
+	preci = (size_t)arg->preci;
+	width = (size_t)arg->width;
+	if (arg->width > 0 && ((arg->preci <= 0 && width > MAX(preci, len))))
+		print_spaces(arg->width - (arg->preci <= 0 ? len : MAX(preci, len)));
 }

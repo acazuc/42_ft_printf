@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:22:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 11:53:37 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/05 13:12:22 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,11 @@ void	print_argument_d(t_argument *argument)
 			return ;
 	}
 	len = ft_strlen(str);
-	if (!argument->flags->minus && argument->width > 0
-			&& ((argument->preci <= 0 && (size_t)argument->width > len)
-				|| (argument->preci >= 1 && (size_t)argument->width > MAX((size_t)argument->preci, len))))
-		print_spaces(argument->width - (argument->preci <= 0 ? len : MAX((size_t)argument->preci, len)));
+	if (!argument->flags->minus)
+		print_argument_spaces(argument, len);
 	if (argument->preci > 0 && (size_t)argument->preci > len)
 		print_zeros(argument->preci - len);
 	ft_putstr(str);
-	if (argument->flags->minus && argument->width > 0
-			&& ((argument->preci <= 0 && (size_t)argument->width > len)
-				|| (argument->preci >= 1 && (size_t)argument->width > MAX((size_t)argument->preci, len))))
-		print_spaces(argument->width - (argument->preci <= 0 ? len : MAX((size_t)argument->preci, len)));
+	if (argument->flags->minus)
+		print_argument_spaces(argument, len);
 }

@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/02/05 09:31:50 by acazuc           ###   ########.fr        #
+#    Updated: 2016/02/05 13:10:31 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS_NAME = main.c \
 			parse_length.c \
 			print_spaces.c \
 			print_zeros.c \
+			print_argument_spaces.c \
 			print_argument_s.c \
 			print_argument_s_caps.c \
 			print_argument_p.c \
