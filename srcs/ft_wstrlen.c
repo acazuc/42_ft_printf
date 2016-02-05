@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 16:49:51 by acazuc           ###   ########.fr       */
+/*   Created: 2016/02/05 15:55:36 by acazuc            #+#    #+#             */
+/*   Updated: 2016/02/05 17:44:43 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf(char *str, ...)
+size_t	ft_wstrlen(wchar_t const *s)
 {
-	t_argument	*argument;
-	va_list		list;
-	size_t		i;
+	size_t	len;
 
-	va_start(list, str);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			i++;
-			if (!(argument = parse_arg(str, &i, &list)))
-				return ;
-			print_argument(argument);
-			argument_free(argument);
-		}
-		else
-			ft_putchar(str[i]);
-		i++;
-	}
-	va_end(list);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
