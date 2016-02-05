@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 15:20:37 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/05 16:01:01 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	ft_printf(char *str, ...)
 
 int	main(void)
 {
-	wchar_t	c = L'Ω';
+	wchar_t	*c = L"ΩΩΩΩΩΩ";
 	setlocale(LC_CTYPE, "");
-	ft_printf("%C\n", c);
-	   printf("%C\n", c);
+	ft_printf("%S\n", c);
+	   printf("%S\n", c);
 	return (0);
 }
