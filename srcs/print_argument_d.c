@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:22:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 11:28:23 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/05 11:53:37 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_argument_d(t_argument *argument)
 	long long int	val;
 
 	val = get_val(argument);
-	if (!(str = ft_itoa(val)))
+	if (!(str = ft_ltoa(val)))
 		return ;
 	if (argument->flags->plus && val >= 0)
 	{
