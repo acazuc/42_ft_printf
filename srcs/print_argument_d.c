@@ -6,21 +6,32 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:22:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 09:35:17 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/05 09:58:13 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static long long int	get_val(t_argument *argument)
+{
+	if (argument->ll)
+		return (va_arg(*argument->va_lst, long long int));
+	else if (argument->l)
+		return (va_arg(*argument->va_lst, long int));
+	else if (argument->hh)
+		return ((signed char)va_arg(*argument->va_lst, int));
+	else if (argument->h)
+		return ((short int)va_arg(*argument->va_lst, int));
+	return (va_arg(*argument->va_lst, int));
+}
+
 void	print_argument_d(t_argument *argument)
 {
-	size_t	len;
-	char	*str;
-	int		val;
+	size_t			len;
+	char			*str;
+	long long int	val;
 
-	if (argument->l)
-		print_argument_s_caps(argument);
-	val = va_arg(*argument->va_lst, int);
+	val = get_val(argument);
 	if (!(str = ft_itoa(val)))
 		return ;
 	if (argument->flags->plus && val >= 0)
