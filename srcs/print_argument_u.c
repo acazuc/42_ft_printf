@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:28:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 10:34:15 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 11:09:13 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static unsigned long long int	get_val(t_argument *argument)
 		return ((unsigned char)va_arg(*argument->va_lst, unsigned int));
 	else if (argument->h)
 		return ((unsigned short int)va_arg(*argument->va_lst, unsigned int));
+	else if (argument->j)
+		return ((uintmax_t)va_arg(*argument->va_lst, uintmax_t));
+	else if (argument->z)
+		return ((size_t)va_arg(*argument->va_lst, size_t));
 	return (va_arg(*argument->va_lst, unsigned int));
 }
 
