@@ -6,11 +6,29 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 16:51:26 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 15:17:41 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 16:27:11 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void		test_free(char cut, void *str)
+{
+	if (cut)
+		free(str);
+}
+
+static int		print_lol(t_argument *argument, size_t len)
+{
+	return (argument->width > 0
+			&& (size_t)argument->width > len);
+}
+
+static void		leloul(t_argument *arg, ssize_t *total, size_t len, int minus)
+{
+	if (minus && print_lol(arg, len))
+		*total += print_spaces(arg->width - len);
+}
 
 static ssize_t	print_wstr(t_argument *argument)
 {
@@ -32,23 +50,12 @@ static ssize_t	print_wstr(t_argument *argument)
 			return (-1);
 	}
 	len = ft_wstrlen(str);
-	if (!argument->flags->minus && argument->width > 0
-			&& (size_t)argument->width > len)
-		total += print_spaces(argument->width - len);
+	leloul(argument, &total, len, !argument->flags->minus);
 	ft_putwstr(str);
 	total += len;
-	if (argument->flags->minus && argument->width > 0
-			&& (size_t)argument->width > len)
-		total += print_spaces(argument->width - len);
-	if (cut)
-		free(str);
+	leloul(argument, &total, len, argument->flags->minus);
+	test_free(cut, str);
 	return (total);
-}
-
-static int		print_lol(t_argument *argument, size_t len)
-{
-	return (argument->width > 0
-			&& (size_t)argument->width > len);
 }
 
 ssize_t			print_argument_s(t_argument *argument)
@@ -71,13 +78,10 @@ ssize_t			print_argument_s(t_argument *argument)
 			return (-1);
 	}
 	len = ft_strlen(str);
-	if (!argument->flags->minus && print_lol(argument, len))
-		total += print_spaces(argument->width - len);
+	leloul(argument, &total, len, !argument->flags->minus);
 	ft_putstr(str);
 	total += len;
-	if (argument->flags->minus && print_lol(argument, len))
-		total += print_spaces(argument->width - len);
-	if (cut)
-		free(str);
+	leloul(argument, &total, len, argument->flags->minus);
+	test_free(cut, str);
 	return (total);
 }
