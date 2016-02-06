@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:22:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 14:48:46 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 15:41:46 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static long long int	get_val(t_argument *argument)
 	return (va_arg(*argument->va_lst, int));
 }
 
-static void				print_char(long long int val, t_argument *argument, ssize_t *total)
+static void				print_char(long long int val, t_argument *argument
+		, ssize_t *total)
 {
 	if (val < 0)
 	{
@@ -46,6 +47,26 @@ static void				print_char(long long int val, t_argument *argument, ssize_t *tota
 		ft_putchar(' ');
 		(*total)++;
 	}
+}
+
+static void				mdr(t_argument *argument, ssize_t *total, size_t *len
+		, long long int *val)
+{
+	if (!argument->flags->minus && !argument->flags->zero)
+		*total += print_argument_spaces(argument, *len, *val < 0
+				|| argument->flags->plus || argument->flags->space);
+	print_char(*val, argument, total);
+	if (!argument->flags->minus && argument->flags->zero)
+		*total += print_argument_zeros(argument, *len, *val < 0
+				|| argument->flags->plus || argument->flags->space);
+	if (argument->preci > 0 && (size_t)argument->preci > *len)
+		*total += print_zeros(argument->preci - *len);
+}
+
+static void				norme(char *str, ssize_t *total, size_t len)
+{
+	ft_putstr(str);
+	*total += len;
 }
 
 ssize_t					print_argument_d(t_argument *argument)
@@ -65,20 +86,12 @@ ssize_t					print_argument_d(t_argument *argument)
 		return (-1);
 	}
 	len = ft_strlen(str);
-	if (!argument->flags->minus && !argument->flags->zero)
-		total += print_argument_spaces(argument, len, val < 0 || argument->flags->plus || argument->flags->space);
-	print_char(val, argument, &total);
-	if (!argument->flags->minus && argument->flags->zero)
-		total += print_argument_zeros(argument, len, val < 0 || argument->flags->plus || argument->flags->space);
-	if (argument->preci > 0 && (size_t)argument->preci > len)
-		total += print_zeros(argument->preci - len);
+	mdr(argument, &total, &len, &val);
 	if (argument->preci)
-	{
-		ft_putstr(str);
-		total += len;
-	}
+		norme(str, &total, len);
 	free(str);
 	if (argument->flags->minus)
-		total += print_argument_spaces(argument, len, val < 0 || argument->flags->plus);
+		total += print_argument_spaces(argument, len, val < 0
+				|| argument->flags->plus);
 	return (total);
 }
