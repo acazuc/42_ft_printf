@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:26:49 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 15:17:59 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 17:37:28 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ ssize_t							print_argument_o(t_argument *argument)
 	len = ft_strlen(str);
 	mdr(argument, &total, &len);
 	if (argument->preci > 0 && (size_t)argument->preci > len)
-		total += print_zeros(argument->preci - len);
+		total += print_zeros(argument->preci - len
+				- (argument->flags->sharp ? 1 : 0));
 	if ((argument->preci && !val && !argument->flags->sharp) || val)
 	{
 		ft_putstr(str);
