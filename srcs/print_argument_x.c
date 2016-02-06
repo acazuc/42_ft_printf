@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:29:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 12:09:40 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 09:53:06 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char		*get_chars(t_argument *argument)
+static char						*get_chars(t_argument *argument)
 {
 	if (argument->type == 'X')
 		return ("0123456789ABCDEF");
@@ -32,27 +32,27 @@ static unsigned long long int	get_val(t_argument *argument)
 	return (va_arg(*argument->va_lst, unsigned int));
 }
 
-void	print_argument_x(t_argument *argument)
+ssize_t							print_argument_x(t_argument *argument)
 {
+	ssize_t					total;
 	size_t					len;
 	char					*str;
 	unsigned long long int	val;
 
+	total = 0;
 	val = get_val(argument);
 	if (!(str = ft_ultoa_base(val, get_chars(argument))))
-		return ;
+		return (-1);
 	if (argument->flags->sharp && !(str = ft_strjoin_free2("0x", str)))
-		return ;
+		return (-1);
 	len = ft_strlen(str);
-	if (!argument->flags->minus && argument->width > 0
-			&& ((argument->preci <= 0 && (size_t)argument->width > len)
-				|| (argument->preci >= 1 && (size_t)argument->width > MAX((size_t)argument->preci, len))))
-		print_spaces(argument->width - (argument->preci <= 0 ? len : MAX((size_t)argument->preci, len)));
+	if (!argument->flags->minus)
+		total += print_argument_spaces(argument, len);
 	if (argument->preci > 0 && (size_t)argument->preci > len)
-		print_zeros(argument->preci - len);
+		total += print_zeros(argument->preci - len);
 	ft_putstr(str);
-	if (argument->flags->minus && argument->width > 0
-			&& ((argument->preci <= 0 && (size_t)argument->width > len)
-				|| (argument->preci >= 1 && (size_t)argument->width > MAX((size_t)argument->preci, len))))
-		print_spaces(argument->width - (argument->preci <= 0 ? len : MAX((size_t)argument->preci, len)));
+	total += len;
+	if (argument->flags->minus)
+		total += print_argument_spaces(argument, len);
+	return (total);
 }

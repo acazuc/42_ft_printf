@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:22:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 13:12:22 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 09:47:23 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,30 @@ static long long int	get_val(t_argument *argument)
 	return (va_arg(*argument->va_lst, int));
 }
 
-void	print_argument_d(t_argument *argument)
+ssize_t					print_argument_d(t_argument *argument)
 {
+	ssize_t			total;
 	size_t			len;
 	char			*str;
 	long long int	val;
 
+	total = 0;
 	val = get_val(argument);
 	if (!(str = ft_ltoa(val)))
-		return ;
+		return (-1);
 	if (argument->flags->plus && val >= 0)
 	{
 		if (!(str = ft_strjoin_free2("+", str)))
-			return ;
+			return (-1);
 	}
 	len = ft_strlen(str);
 	if (!argument->flags->minus)
-		print_argument_spaces(argument, len);
+		total += print_argument_spaces(argument, len);
 	if (argument->preci > 0 && (size_t)argument->preci > len)
-		print_zeros(argument->preci - len);
+		total += print_zeros(argument->preci - len);
 	ft_putstr(str);
+	total += len;
 	if (argument->flags->minus)
-		print_argument_spaces(argument, len);
+		total += print_argument_spaces(argument, len);
+	return (total);
 }

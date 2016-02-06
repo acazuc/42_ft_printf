@@ -6,18 +6,20 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 16:51:26 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 16:47:09 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 09:51:28 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	print_wstr(t_argument *argument)
+static ssize_t	print_wstr(t_argument *argument)
 {
+	ssize_t	total;
 	size_t	len;
 	wchar_t	*str;
 	char	cut;
 
+	total = 0;
 	str = va_arg(*argument->va_lst, wchar_t*);
 	if (!str)
 		str = L"(null)";
@@ -27,43 +29,51 @@ static void	print_wstr(t_argument *argument)
 	{
 		cut = 1;
 		if (!(str = ft_wstrsub(str, 0, argument->preci)))
-			return ;
+			return (-1);
 	}
 	len = ft_wstrlen(str);
-	if (!argument->flags->minus && argument->width > 0 && (size_t)argument->width > len)
-		print_spaces(argument->width - len);
+	if (!argument->flags->minus && argument->width > 0
+			&& (size_t)argument->width > len)
+		total += print_spaces(argument->width - len);
 	ft_putwstr(str);
-	if (argument->flags->minus && argument->width > 0 && (size_t)argument->width > len)
-		print_spaces(argument->width - len);
+	total += len;
+	if (argument->flags->minus && argument->width > 0
+			&& (size_t)argument->width > len)
+		total += print_spaces(argument->width - len);
 	if (cut)
 		free(str);
+	return (total);
 }
 
-void	print_argument_s(t_argument *argument)
+ssize_t	print_argument_s(t_argument *argument)
 {
+	ssize_t	total;
 	size_t	len;
 	char	*str;
 	char	cut;
 
+	total = 0;
 	if (argument->l)
-		print_wstr(argument);
-	str = va_arg(*argument->va_lst, char*);
-	if (!str)
+		return (print_wstr(argument));
+	if (!(str = va_arg(*argument->va_lst, char*)))
 		str = "(null)";
-	len = ft_strlen(str);
 	cut = 0;
-	if ((size_t)argument->preci < len)
+	if ((size_t)argument->preci < (len = ft_strlen(str)))
 	{
 		cut = 1;
 		if (!(str = ft_strsub(str, 0, argument->preci)))
-			return ;
+			return (-1);
 	}
 	len = ft_strlen(str);
-	if (!argument->flags->minus && argument->width > 0 && (size_t)argument->width > len)
-		print_spaces(argument->width - len);
+	if (!argument->flags->minus && argument->width > 0
+			&& (size_t)argument->width > len)
+		total += print_spaces(argument->width - len);
 	ft_putstr(str);
-	if (argument->flags->minus && argument->width > 0 && (size_t)argument->width > len)
-		print_spaces(argument->width - len);
+	total += len;
+	if (argument->flags->minus && argument->width > 0
+			&& (size_t)argument->width > len)
+		total += print_spaces(argument->width - len);
 	if (cut)
 		free(str);
+	return (total);
 }

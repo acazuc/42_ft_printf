@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:46:09 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 09:28:34 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 09:16:45 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "prototypes.h"
 # include "argument.h"
 # include "flags.h"
-# include "../libft/includes/libft.h"
 
 # define MAX(x, y) ((x) > (y) ? (x) : (y))
 

@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:21:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 11:15:52 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 09:49:09 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_argument_p(t_argument *argument)
+ssize_t	print_argument_p(t_argument *argument)
 {
 	argument->flags->sharp = 1;
 	argument->l = 1;
@@ -21,5 +21,5 @@ void	print_argument_p(t_argument *argument)
 	argument->hh = 0;
 	argument->z = 0;
 	argument->j = 0;
-	print_argument_x(argument);
+	return (print_argument_x(argument));
 }
