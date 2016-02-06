@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 15:41:45 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 17:47:27 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 17:52:01 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putwstr(wchar_t *s)
+ssize_t	ft_putwstr(wchar_t *s)
 {
-	ft_putwstr_fd(s, 1);
+	return (ft_putwstr_fd(s, 1));
 }

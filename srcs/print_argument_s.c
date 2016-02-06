@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 16:51:26 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 17:46:43 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 17:54:44 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ static ssize_t	print_wstr(t_argument *argument)
 	}
 	len = ft_wstrlen(str);
 	leloul(argument, &total, len, 0);
-	ft_putwstr(str);
-	total += len;
+	total += ft_putwstr(str);
 	leloul(argument, &total, len, 1);
 	test_free(cut, str);
 	return (total);

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:47:40 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 17:47:16 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 17:51:33 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ ssize_t		print_argument_c(t_argument *argument);
 ssize_t		print_argument_c_caps(t_argument *argument);
 ssize_t		print_argument_unknown(t_argument *argument);
 void		ft_putchar(char c);
-void		ft_putwchar(wchar_t c);
+ssize_t		ft_putwchar(wchar_t c);
 void		ft_putchar_fd(char c, int fd);
-void		ft_putwchar_fd(wchar_t c, int fd);
+ssize_t		ft_putwchar_fd(wchar_t c, int fd);
 char		*ft_strsub(char const *str, unsigned int start, size_t len);
 wchar_t		*ft_wstrsub(wchar_t const *str, unsigned int start, size_t len);
 int			ft_atoi(const char *str);
 void		ft_putstr(char const *str);
-void		ft_putwstr(wchar_t *str);
+ssize_t		ft_putwstr(wchar_t *str);
 void		ft_putstr_fd(char const *str, int fd);
-void		ft_putwstr_fd(wchar_t *str, int fd);
+ssize_t		ft_putwstr_fd(wchar_t *str, int fd);
 size_t		ft_strlen(char const *str);
 size_t		ft_wstrlen(wchar_t const *str);
 char		*ft_ltoa(long long int val);
