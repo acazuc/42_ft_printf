@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:29:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 11:35:56 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 13:06:23 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,17 @@ ssize_t							print_argument_x(t_argument *argument)
 		total += print_argument_spaces(argument, len, 0);
 	if (argument->preci > 0 && (size_t)argument->preci > len)
 		total += print_zeros(argument->preci - len);
-	ft_putstr(str);
+	if (!argument->preci && argument->flags->sharp)
+	{
+		ft_putstr("0x");
+		total += 2;
+	}
+	if (argument->preci)
+	{
+		ft_putstr(str);
+		total += len;
+	}
 	free(str);
-	total += len;
 	if (argument->flags->minus)
 		total += print_argument_spaces(argument, len, 0);
 	return (total);
