@@ -6,18 +6,11 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 16:17:26 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 17:30:14 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static void		percent(size_t *i, ssize_t *total)
-{
-	(*i)++;
-	ft_putchar('%');
-	(*total)++;
-}
 
 static void		nothing(ssize_t *total, char c)
 {
@@ -52,18 +45,13 @@ int				ft_printf(char *str, ...)
 		{
 			if (check_quit(&list, !str[i + 1]))
 				return (total);
-			if (str[i + 1] == '%')
-				percent(&i, &total);
-			else
-			{
-				i++;
-				if (check_quit(&list, !(argument = parse_arg(str, &i, &list)))
-						|| check_quit(&list
-							, (ret = print_argument(argument)) == -1))
-					return (-1);
-				total += ret;
-				argument_free(argument);
-			}
+			i++;
+			if (check_quit(&list, !(argument = parse_arg(str, &i, &list)))
+					|| check_quit(&list
+						, (ret = print_argument(argument)) == -1))
+				return (-1);
+			total += ret;
+			argument_free(argument);
 		}
 		else
 			nothing(&total, str[i]);
