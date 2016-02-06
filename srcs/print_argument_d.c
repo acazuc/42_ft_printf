@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:22:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 12:40:08 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 13:01:45 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ ssize_t					print_argument_d(t_argument *argument)
 	}
 	len = ft_strlen(str);
 	if (!argument->flags->minus && !argument->flags->zero)
-		total += print_argument_spaces(argument, len, val < 0 || argument->flags->plus);
+		total += print_argument_spaces(argument, len, val < 0 || argument->flags->plus || argument->flags->space);
 	if (val < 0)
 	{
 		ft_putchar('-');
@@ -58,18 +58,21 @@ ssize_t					print_argument_d(t_argument *argument)
 		ft_putchar('+');
 		total++;
 	}
-	if (!argument->flags->minus && argument->flags->zero)
-		total += print_argument_zeros(argument, len, val < 0 || argument->flags->plus);
-	if (argument->preci > 0 && (size_t)argument->preci > len)
-		total += print_zeros(argument->preci - len);
-	if (argument->flags->space && !argument->flags->plus && val > 0)
+	if (argument->flags->space && !argument->flags->plus && val >= 0)
 	{
 		ft_putchar(' ');
 		total++;
 	}
-	ft_putstr(str);
+	if (!argument->flags->minus && argument->flags->zero)
+		total += print_argument_zeros(argument, len, val < 0 || argument->flags->plus || argument->flags->space);
+	if (argument->preci > 0 && (size_t)argument->preci > len)
+		total += print_zeros(argument->preci - len);
+	if (argument->preci)
+	{
+		ft_putstr(str);
+		total += len;
+	}
 	free(str);
-	total += len;
 	if (argument->flags->minus)
 		total += print_argument_spaces(argument, len, val < 0 || argument->flags->plus);
 	return (total);
