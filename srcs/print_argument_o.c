@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:26:49 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 13:14:40 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 13:23:07 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ ssize_t							print_argument_o(t_argument *argument)
 	total = 0;
 	if (!(str = ft_ultoa_base(val, "01234567")))
 		return (-1);
-	if (argument->flags->sharp && !(str = ft_strjoin_free2("0", str)))
+	if (argument->flags->sharp && val && !(str = ft_strjoin_free2("0", str)))
 		return (-1);
 	len = ft_strlen(str);
 	if (!argument->flags->minus)
