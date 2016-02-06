@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:32:10 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 09:53:45 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 14:22:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 ssize_t	print_argument_c(t_argument *argument)
 {
 	ssize_t	total;
-	wint_t	val;
+	wchar_t	val;
 
 	total = 0;
 	if (argument->l)
-		val = va_arg(*argument->va_lst, wint_t);
+		val = (wchar_t)va_arg(*argument->va_lst, wint_t);
 	else
 		val = (unsigned char)va_arg(*argument->va_lst, int);
 	if (argument->width > 0 && !argument->flags->minus)
