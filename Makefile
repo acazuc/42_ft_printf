@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/02/06 09:26:04 by acazuc           ###   ########.fr        #
+#    Updated: 2016/02/06 10:02:20 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ SRCS_NAME = main.c \
 			print_argument_x_caps.c \
 			print_argument_c.c \
 			print_argument_c_caps.c \
-			print_argument_percent.c \
 			ft_atoi.c \
 			ft_putchar.c \
 			ft_putchar_fd.c \

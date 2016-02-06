@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:49:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 09:56:19 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 10:08:28 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,25 @@ int		ft_printf(char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			i++;
-			if (!(argument = parse_arg(str, &i, &list)))
-				return (-1);
-			if ((ret = print_argument(argument)) == -1)
-				return (-1);
+			if (!str[i + 1])
+				return (total);
+			if (str[i + 1] == '%')
+			{
+				i++;
+				ft_putchar('%');
+				total++;
+			}
 			else
-				total += ret;
-			argument_free(argument);
+			{
+				i++;
+				if (!(argument = parse_arg(str, &i, &list)))
+					return (-1);
+				if ((ret = print_argument(argument)) == -1)
+					return (-1);
+				else
+					total += ret;
+				argument_free(argument);
+			}
 		}
 		else
 		{

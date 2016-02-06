@@ -6,10 +6,11 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 09:43:48 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 17:50:31 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 10:27:28 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include "ft_printf.h"
 
 static size_t	get_size(unsigned long long int n)
@@ -20,7 +21,7 @@ static size_t	get_size(unsigned long long int n)
 	while (n > 0)
 	{
 		size++;
-		n /= 10;
+		n = n / (unsigned long long int)10;
 	}
 	return (size);
 }
@@ -41,10 +42,10 @@ char			*ft_ultoa(unsigned long long int n)
 		return (result);
 	j = 1;
 	i = 1;
-	while (nb / j > 0)
+	while (nb / j > 0 && j != ULONG_MAX && n != ULONG_MAX)
 	{
-		result[size - i++ - 1] = (nb / j) % 10 + '0';
-		j = j * 10;
+		result[size - i++ - 1] = ((unsigned long long int)(nb / j) % 10) + '0';
+		j = j >= ULONG_MAX / 10 ? ULONG_MAX : j * 10;
 	}
 	result[size - 1] = '\0';
 	return (result);

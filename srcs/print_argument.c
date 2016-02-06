@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 16:35:07 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 09:42:11 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 10:10:41 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ static ssize_t		print_argument_2(t_argument *argument)
 		return (print_argument_c(argument));
 	else if (argument->type == 'C')
 		return (print_argument_c_caps(argument));
-	else if (argument->type == '%')
-		return (print_argument_percent(argument));
+	else
+	{
+		ft_putchar(argument->type);
+		return (1);
+	}
 	return (0);
 }
 
