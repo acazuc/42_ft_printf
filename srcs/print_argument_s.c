@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 16:51:26 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 16:27:11 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 16:55:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,16 @@ static int		print_lol(t_argument *argument, size_t len)
 			&& (size_t)argument->width > len);
 }
 
-static void		leloul(t_argument *arg, ssize_t *total, size_t len, int minus)
+static void		leloul(t_argument *arg, ssize_t *total, size_t len, int m)
 {
-	if (minus && print_lol(arg, len))
+	int		minus;
+
+	minus = arg->flags->minus;
+	if (!m)
+		minus = !minus;
+	if (!m && minus && arg->flags->zero && print_lol(arg, len))
+		*total += print_zeros(arg->width - len);
+	else if (minus && print_lol(arg, len))
 		*total += print_spaces(arg->width - len);
 }
 
@@ -50,10 +57,10 @@ static ssize_t	print_wstr(t_argument *argument)
 			return (-1);
 	}
 	len = ft_wstrlen(str);
-	leloul(argument, &total, len, !argument->flags->minus);
+	leloul(argument, &total, len, 0);
 	ft_putwstr(str);
 	total += len;
-	leloul(argument, &total, len, argument->flags->minus);
+	leloul(argument, &total, len, 1);
 	test_free(cut, str);
 	return (total);
 }
@@ -78,10 +85,10 @@ ssize_t			print_argument_s(t_argument *argument)
 			return (-1);
 	}
 	len = ft_strlen(str);
-	leloul(argument, &total, len, !argument->flags->minus);
+	leloul(argument, &total, len, 0);
 	ft_putstr(str);
 	total += len;
-	leloul(argument, &total, len, argument->flags->minus);
+	leloul(argument, &total, len, 1);
 	test_free(cut, str);
 	return (total);
 }
