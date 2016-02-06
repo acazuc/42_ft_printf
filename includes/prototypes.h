@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:47:40 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 11:34:46 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 11:43:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void		parse_length(t_argument *argument, char *str, size_t *i);
 ssize_t		print_spaces(size_t len);
 ssize_t		print_zeros(size_t len);
 ssize_t		print_argument_spaces(t_argument *arg, size_t len, int has_minus);
+ssize_t		print_argument_zeros(t_argument *arg, size_t len, int has_minus);
 t_argument	*argument_create(va_list *lst);
 void		argument_free(t_argument *argument);
 t_flags		*flags_create(void);
