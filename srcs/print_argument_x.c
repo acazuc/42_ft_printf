@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:29:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 16:31:06 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 16:59:01 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ ssize_t							print_argument_x(t_argument *argument)
 	}
 	free(str);
 	if (argument->flags->minus)
-		total += print_argument_spaces(argument, len, 0);
+		total += print_argument_spaces(argument
+				, len + (argument->flags->sharp
+					&& (argument->type == 'p' || val) ? 2 : 0), 0);
 	return (total);
 }
