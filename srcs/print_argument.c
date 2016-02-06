@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 16:35:07 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 10:10:41 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 12:48:06 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ static ssize_t		print_argument_2(t_argument *argument)
 	else if (argument->type == 'C')
 		return (print_argument_c_caps(argument));
 	else
-	{
-		ft_putchar(argument->type);
-		return (1);
-	}
+		return (print_argument_unknown(argument));
 	return (0);
 }
 

@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_argument_unknown.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 16:54:50 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 12:47:31 by acazuc           ###   ########.fr       */
+/*   Created: 2016/02/06 12:48:08 by acazuc            #+#    #+#             */
+/*   Updated: 2016/02/06 12:50:15 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <limits.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
-int main(void)
+ssize_t	print_argument_unknown(t_argument *argument)
 {
-	int lol = ft_printf("%10R\n", 0);
-	int mdr =    printf("%10R\n", 0);
-	printf("ft_printf = %d\n   printf = %d\n", lol, mdr);
-	return (0);
+	ssize_t	total;
+
+	total = 0;
+	if (argument->width > 0)
+	{
+		total += print_spaces(argument->width - 1);
+	}
+	ft_putchar(argument->type);
+	total++;
+	return (total);
 }

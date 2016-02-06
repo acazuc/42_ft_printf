@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:47:40 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 11:43:39 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 12:49:28 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ ssize_t		print_argument_x(t_argument *argument);
 ssize_t		print_argument_x_caps(t_argument *argument);
 ssize_t		print_argument_c(t_argument *argument);
 ssize_t		print_argument_c_caps(t_argument *argument);
+ssize_t		print_argument_unknown(t_argument *argument);
 void		ft_putchar(char c);
 void		ft_putwchar(wchar_t c);
 void		ft_putchar_fd(char c, int fd);
