@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:29:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 13:26:00 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 13:27:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ ssize_t							print_argument_x(t_argument *argument)
 	if (argument->flags->sharp && (argument->type == 'p' || val))
 	{
 		len -= 2;
-		ft_putstr("0x");
+		ft_putstr(argument->type == 'X' ? "0X" : "0x");
 		total += 2;
 	}
 	if (argument->preci > 0 && (size_t)argument->preci > len)

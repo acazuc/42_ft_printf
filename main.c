@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 16:54:50 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 13:24:02 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 13:26:53 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int main(void)
 {
-	int lol = ft_printf("%#x\n", 0);
-	int mdr =    printf("%#x\n", 0);
+	int lol = ft_printf("%#X\n", 42);
+	int mdr =    printf("%#X\n", 42);
 	printf("ft_printf = %d\n   printf = %d\n", lol, mdr);
 	return (0);
 }
