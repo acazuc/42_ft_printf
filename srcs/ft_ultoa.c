@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 09:43:48 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 10:27:28 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 10:37:29 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ char			*ft_ultoa(unsigned long long int n)
 		return (result);
 	j = 1;
 	i = 1;
-	while (nb / j > 0 && j != ULONG_MAX && n != ULONG_MAX)
+	while (nb / j > 0 && j != ULONG_MAX)
 	{
-		result[size - i++ - 1] = ((unsigned long long int)(nb / j) % 10) + '0';
+		result[size - i++ - 1] = ((nb / j) % 10) + '0';
 		j = j >= ULONG_MAX / 10 ? ULONG_MAX : j * 10;
 	}
 	result[size - 1] = '\0';
