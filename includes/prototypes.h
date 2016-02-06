@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:47:40 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 12:49:28 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 17:47:16 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ char		*ft_strsub(char const *str, unsigned int start, size_t len);
 wchar_t		*ft_wstrsub(wchar_t const *str, unsigned int start, size_t len);
 int			ft_atoi(const char *str);
 void		ft_putstr(char const *str);
-void		ft_putwstr(wchar_t const *str);
+void		ft_putwstr(wchar_t *str);
 void		ft_putstr_fd(char const *str, int fd);
-void		ft_putwstr_fd(wchar_t const *str, int fd);
+void		ft_putwstr_fd(wchar_t *str, int fd);
 size_t		ft_strlen(char const *str);
 size_t		ft_wstrlen(wchar_t const *str);
 char		*ft_ltoa(long long int val);

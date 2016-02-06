@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 15:31:41 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 14:59:47 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 17:48:51 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ static void	case_4(char **str, int *width, wchar_t c)
 
 void		ft_putwchar_fd(wchar_t c, int fd)
 {
-	char	str[4];
-	char	*mdr;
+	char	*str;
 	int		width;
 
+	if (!(str = malloc(sizeof(*str) * 4)))
+		return ;
 	width = 0;
-	mdr = &(str[0]);
 	if (c < (1 << 7))
-		case_1(&mdr, &width, c);
+		case_1(&str, &width, c);
 	else if (c < (1 << 11))
-		case_2(&mdr, &width, c);
+		case_2(&str, &width, c);
 	else if (c < (1 << 16))
-		case_3(&mdr, &width, c);
+		case_3(&str, &width, c);
 	else if (c < (1 << 21))
-		case_4(&mdr, &width, c);
-	write(fd, mdr, width);
+		case_4(&str, &width, c);
+	write(fd, str, width);
 }
