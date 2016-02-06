@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:03:59 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 09:46:40 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 11:35:14 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-ssize_t	print_argument_spaces(t_argument *arg, size_t len)
+ssize_t	print_argument_spaces(t_argument *arg, size_t len, int has_minux)
 {
 	ssize_t	total;
 	size_t	preci;
@@ -25,6 +25,8 @@ ssize_t	print_argument_spaces(t_argument *arg, size_t len)
 				|| (arg->preci >= 1 && width > MAX(preci, len))))
 	{
 		total = arg->width - (arg->preci <= 0 ? len : MAX(preci, len));
+		if (has_minux)
+			total--;
 		print_spaces(total);
 	}
 	return (total);

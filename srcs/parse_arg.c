@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 14:42:35 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 08:45:47 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 11:29:03 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ static int	parse_preci(t_argument *argument, char *str, size_t *i)
 		(*i)++;
 	end = *i;
 	if (end == start)
+	{
+		argument->preci = 0;
 		return (1);
+	}
 	if (!(result = ft_strsub(str, start, end - start)))
 		return (0);
 	argument->preci = ft_atoi(result);
