@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 16:35:07 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 12:48:06 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 14:59:59 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static ssize_t		print_argument_2(t_argument *argument)
 	return (0);
 }
 
-ssize_t			print_argument(t_argument *argument)
+ssize_t				print_argument(t_argument *argument)
 {
 	if (argument->type == 's')
 		return (print_argument_s(argument));

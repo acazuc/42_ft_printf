@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:29:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 13:27:39 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 15:03:31 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@ static unsigned long long int	get_val(t_argument *argument)
 	return (va_arg(*argument->va_lst, unsigned int));
 }
 
+static void						print_1(t_argument *argument
+		, unsigned long long int val, size_t *len, ssize_t *total)
+{
+	if (argument->flags->sharp && (argument->type == 'p' || val))
+		*len += 2;
+	if (!argument->flags->minus)
+		*total += print_argument_spaces(argument, *len, 0);
+	if (argument->flags->sharp && (argument->type == 'p' || val))
+	{
+		*len -= 2;
+		ft_putstr(argument->type == 'X' ? "0X" : "0x");
+		*total += 2;
+	}
+}
+
 ssize_t							print_argument_x(t_argument *argument)
 {
 	ssize_t					total;
@@ -48,16 +63,7 @@ ssize_t							print_argument_x(t_argument *argument)
 	if (!(str = ft_ultoa_base(val, get_chars(argument))))
 		return (-1);
 	len = ft_strlen(str);
-	if (argument->flags->sharp && (argument->type == 'p' || val))
-		len += 2;
-	if (!argument->flags->minus)
-		total += print_argument_spaces(argument, len, 0);
-	if (argument->flags->sharp && (argument->type == 'p' || val))
-	{
-		len -= 2;
-		ft_putstr(argument->type == 'X' ? "0X" : "0x");
-		total += 2;
-	}
+	print_1(argument, val, &len, &total);
 	if (argument->preci > 0 && (size_t)argument->preci > len)
 		total += print_zeros(argument->preci - len);
 	if (argument->preci)

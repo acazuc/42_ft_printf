@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 16:51:26 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 11:16:31 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 15:17:41 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,13 @@ static ssize_t	print_wstr(t_argument *argument)
 	return (total);
 }
 
-ssize_t	print_argument_s(t_argument *argument)
+static int		print_lol(t_argument *argument, size_t len)
+{
+	return (argument->width > 0
+			&& (size_t)argument->width > len);
+}
+
+ssize_t			print_argument_s(t_argument *argument)
 {
 	ssize_t	total;
 	size_t	len;
@@ -65,13 +71,11 @@ ssize_t	print_argument_s(t_argument *argument)
 			return (-1);
 	}
 	len = ft_strlen(str);
-	if (!argument->flags->minus && argument->width > 0
-			&& (size_t)argument->width > len)
+	if (!argument->flags->minus && print_lol(argument, len))
 		total += print_spaces(argument->width - len);
 	ft_putstr(str);
 	total += len;
-	if (argument->flags->minus && argument->width > 0
-			&& (size_t)argument->width > len)
+	if (argument->flags->minus && print_lol(argument, len))
 		total += print_spaces(argument->width - len);
 	if (cut)
 		free(str);

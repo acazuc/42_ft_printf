@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:22:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 13:01:45 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 14:48:46 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,25 @@ static long long int	get_val(t_argument *argument)
 	return (va_arg(*argument->va_lst, int));
 }
 
+static void				print_char(long long int val, t_argument *argument, ssize_t *total)
+{
+	if (val < 0)
+	{
+		ft_putchar('-');
+		(*total)++;
+	}
+	else if (argument->flags->plus)
+	{
+		ft_putchar('+');
+		(*total)++;
+	}
+	if (argument->flags->space && !argument->flags->plus && val >= 0)
+	{
+		ft_putchar(' ');
+		(*total)++;
+	}
+}
+
 ssize_t					print_argument_d(t_argument *argument)
 {
 	ssize_t			total;
@@ -48,21 +67,7 @@ ssize_t					print_argument_d(t_argument *argument)
 	len = ft_strlen(str);
 	if (!argument->flags->minus && !argument->flags->zero)
 		total += print_argument_spaces(argument, len, val < 0 || argument->flags->plus || argument->flags->space);
-	if (val < 0)
-	{
-		ft_putchar('-');
-		total++;
-	}
-	else if (argument->flags->plus)
-	{
-		ft_putchar('+');
-		total++;
-	}
-	if (argument->flags->space && !argument->flags->plus && val >= 0)
-	{
-		ft_putchar(' ');
-		total++;
-	}
+	print_char(val, argument, &total);
 	if (!argument->flags->minus && argument->flags->zero)
 		total += print_argument_zeros(argument, len, val < 0 || argument->flags->plus || argument->flags->space);
 	if (argument->preci > 0 && (size_t)argument->preci > len)

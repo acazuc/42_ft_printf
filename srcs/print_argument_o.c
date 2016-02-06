@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:26:49 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 14:46:13 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/06 15:17:59 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,21 @@ static unsigned long long int	get_val(t_argument *argument)
 	return (va_arg(*argument->va_lst, unsigned int));
 }
 
+static void						mdr(t_argument *argument, ssize_t *total
+		, size_t *len)
+{
+	if (argument->flags->sharp)
+		(*len)++;
+	if (!argument->flags->minus)
+		(*total) += print_argument_spaces(argument, *len, 0);
+	if (argument->flags->sharp)
+	{
+		(*len)--;
+		ft_putchar('0');
+		(*total)++;
+	}
+}
+
 ssize_t							print_argument_o(t_argument *argument)
 {
 	ssize_t					total;
@@ -41,16 +56,7 @@ ssize_t							print_argument_o(t_argument *argument)
 	if (!(str = ft_ultoa_base(val, "01234567")))
 		return (-1);
 	len = ft_strlen(str);
-	if (argument->flags->sharp)
-		len++;
-	if (!argument->flags->minus)
-		total += print_argument_spaces(argument, len, 0);
-	if (argument->flags->sharp)
-	{
-		len--;
-		ft_putchar('0');
-		total++;
-	}
+	mdr(argument, &total, &len);
 	if (argument->preci > 0 && (size_t)argument->preci > len)
 		total += print_zeros(argument->preci - len);
 	if ((argument->preci && !val && !argument->flags->sharp) || val)
