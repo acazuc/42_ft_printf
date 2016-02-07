@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:22:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 17:22:57 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/07 09:21:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,19 @@ static void				print_char(long long int val, t_argument *argument
 static void				mdr(t_argument *argument, ssize_t *total, size_t *len
 		, long long int *val)
 {
-	if (!argument->flags->minus && !argument->flags->zero)
+	if (!argument->flags->minus
+			&& (!argument->flags->zero || argument->preci >= 0))
+	{
 		*total += print_argument_spaces(argument, *len, *val < 0
 				|| argument->flags->plus || argument->flags->space);
+	}
 	print_char(*val, argument, total);
-	if (!argument->flags->minus && argument->flags->zero)
+	if (!argument->flags->minus && argument->flags->zero
+			&& argument->preci == -1)
+	{
 		*total += print_argument_zeros(argument, *len, *val < 0
 				|| argument->flags->plus || argument->flags->space);
+	}
 	if (argument->preci > 0 && (size_t)argument->preci > *len)
 		*total += print_zeros(argument->preci - *len);
 }
