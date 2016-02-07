@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 18:34:01 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/05 08:44:16 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/07 11:25:17 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				parse_width(t_argument *argument, char *str, size_t *i)
+int				parse_width(t_argument *argument, char *str, ssize_t *i)
 {
 	size_t	start;
 	size_t	end;

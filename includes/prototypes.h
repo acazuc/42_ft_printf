@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 19:47:40 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/07 09:09:22 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/07 11:25:11 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include "flags.h"
 
 int			ft_printf(char *str, ...);
-t_argument	*parse_arg(char *str, size_t *i, va_list *lst);
-int			parse_width(t_argument *argument, char *str, size_t *i);
-void		parse_length(t_argument *argument, char *str, size_t *i);
+t_argument	*parse_arg(char *str, ssize_t *i, va_list *lst);
+int			parse_width(t_argument *argument, char *str, ssize_t *i);
+void		parse_length(t_argument *argument, char *str, ssize_t *i);
 ssize_t		print_spaces(size_t len);
 ssize_t		print_zeros(size_t len);
 ssize_t		print_argument_spaces(t_argument *arg, size_t len, int has_minus);

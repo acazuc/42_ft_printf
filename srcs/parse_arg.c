@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 14:42:35 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 12:46:13 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/07 11:24:31 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	parse_flags(t_flags *flags, char *str, size_t *i)
+static void	parse_flags(t_flags *flags, char *str, ssize_t *i)
 {
 	if (str[*i] == '-')
 	{
@@ -38,7 +38,7 @@ static void	parse_flags(t_flags *flags, char *str, size_t *i)
 	}
 }
 
-static int	parse_preci(t_argument *argument, char *str, size_t *i)
+static int	parse_preci(t_argument *argument, char *str, ssize_t *i)
 {
 	size_t	start;
 	size_t	end;
@@ -62,7 +62,7 @@ static int	parse_preci(t_argument *argument, char *str, size_t *i)
 	return (1);
 }
 
-t_argument	*parse_arg(char *str, size_t *i, va_list *lst)
+t_argument	*parse_arg(char *str, ssize_t *i, va_list *lst)
 {
 	t_argument	*argument;
 
