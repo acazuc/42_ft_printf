@@ -6,7 +6,7 @@
 /*   By: acazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 15:17:16 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/06 18:47:44 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/07 09:24:26 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static size_t	char_len(wchar_t c)
 	return (0);
 }
 
-wchar_t	*ft_wstrsub(wchar_t const *s, unsigned int start, size_t len)
+wchar_t			*ft_wstrsub(wchar_t const *s, unsigned int start, size_t len)
 {
 	wchar_t	*ret;
 	wchar_t	*result;
