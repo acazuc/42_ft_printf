@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 17:29:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/07 09:09:36 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/07 09:26:11 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ static void						print_1(t_argument *argument
 		*len += 2;
 	if (!argument->flags->minus && !argument->flags->zero)
 		*total += print_argument_spaces(argument, *len, 0);
-	else if (!argument->flags->minus)
-		*total += print_argument_zeros(argument, *len, 0);
 	if (argument->flags->sharp && (argument->type == 'p' || val))
 	{
-		*len -= 2;
 		ft_putstr(argument->type == 'X' ? "0X" : "0x");
 		*total += 2;
 	}
+	if (!argument->flags->minus && argument->flags->zero)
+		*total += print_argument_zeros(argument, *len, 0);
+	if (argument->flags->sharp && (argument->type == 'p' || val))
+		*len -= 2;
 }
 
 ssize_t							print_argument_x(t_argument *argument)
